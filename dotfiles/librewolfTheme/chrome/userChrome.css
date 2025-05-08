@@ -191,6 +191,11 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   color: #dedede !important;
 }
 
+* {
+		border-radius: 0px !important;
+		--panel-border-radius: 0px !important;
+}
+
 /* Disable elements 
 #context-navigation,
 #context-savepage,
