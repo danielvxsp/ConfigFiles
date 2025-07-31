@@ -13,7 +13,18 @@
    #    "#m#"  m" "m
 
 by Miguel Avila
-edited by Daniel 
+
+  __ _ _   _| |_ ___| |__  _ __ _____      _____  ___ _ __
+ / _` | | | | __/ _ | '_ \| '__/ _ \ \ /\ / / __|/ _ | '__|
+| (_| | |_| | ||  __| |_) | | | (_) \ V  V /\__ |  __| |  
+ \__, |\__,_|\__\___|_.__/|_|  \___/ \_/\_/ |___/\___|_|  
+    |_|
+  ___  __| (_| |_(_) ___  _ __
+ / _ \/ _` | | __| |/ _ \| '_ \
+|  __| (_| | | |_| | (_) | | | |
+ \___|\__,_|_|\__|_|\___/|_| |_|
+ 
+ edited by Daniel 
 
 */
 
@@ -24,11 +35,6 @@ edited by Daniel
 └─┘└─┘┘└┘└  ┴└─┘└─┘┴└─┴ ┴ ┴ ┴└─┘┘└┘
 
 */
-
-:root {
-  --sfwindow: #19171a;
-  --sfsecondary: #201e21;
-}
 
 /* Urlbar View */
 
@@ -42,8 +48,6 @@ edited by Daniel
   display: none !important;
 }
 */
-
-/*─────────────────────────────*/
 
 /* 
 ┌─┐┌─┐┬  ┌─┐┬─┐┌─┐
@@ -65,6 +69,12 @@ edited by Daniel
   border-top: 2px solid var(--identity-tab-color) !important;
   border-bottom: 2px solid var(--identity-tab-color) !important;
   background-color: var(--identity-tab-color) !important;
+  min-width: 25px !important;
+  height: 10px !important;
+}
+
+#tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
+  height: 23px !important;
 }
 
 /* Inactive tabs color */
@@ -117,17 +127,25 @@ edited by Daniel
   margin-inline-start: 0 !important;
 }
 
+#tabbrowser-arrowscrollbox {
+  overflow: hidden !important; /* this is what fixed emty tab bar space when closing tabs */
+}
+
+#tab-background {	max-height: 32px !important;}
 :root {
   --toolbarbutton-border-radius: 0 !important;
   --tab-border-radius: 0 !important;
   --tab-block-margin: 0 !important;
+  --tab-toolbar-navbar-overlap: 0px !important;
+  --tab-min-height: 15px !important;
+  --tab-max-height: 15px !important;
 }
 
 .tab-background {
   border-right: 0px solid rgba(0, 0, 0, 0) !important;
   margin-left: -4px !important;
   transition: background-color 0.2s ease-in-out !important;
-  background-color: color-mix(in srgb, var(--identity-tab-color) 15%, transparent) !important;
+  background-color: color-mix(in srgb, var(--identity-tab-color) 15%, transparent) !important; */
   border-top: 2px solid color-mix(in srgb, var(--identity-tab-color) 100%, transparent) !important;
   position: relative;
   overflow: visible !important;
@@ -175,13 +193,13 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 
 /* Toolbar  */
 #tracking-protection-icon-container,
-#urlbar-zoom-button,
+/*#urlbar-zoom-button,*/
 #star-button-box,
 #pageActionButton,
 #pageActionSeparator,
-#tabs-newtab-button,
+/*#tabs-newtab-button,*/
 #back-button,
-#PanelUI-button,
+/*#PanelUI-button,*/
 #forward-button,
 .tab-secondary-label {
   display: none !important;
@@ -191,9 +209,23 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   color: #dedede !important;
 }
 
-* {
-		border-radius: 0px !important;
-		--panel-border-radius: 0px !important;
+menupopup,
+panel,
+.panel-arrowcontent,
+panelview,
+.popup-internal-box,
+.menupopup-arrowscrollbox {
+    border-radius: 0 !important;
+}
+
+/* Remove shadow from popups */
+panel[type="arrow"] {
+    --panel-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+* { 
+    border-radius: 0 !important;
 }
 
 /* Disable elements 
@@ -224,3 +256,17 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #context_closeTabOptions {
   display: none !important;
 } */
+
+
+/* Make tabs expand proportionally to fill the tab bar */
+.tabbrowser-tab[fadein]:not([pinned]) {
+  flex-grow: 1 !important;  /
+  min-width: 50px !important; 
+  max-width: none !important; /* Override fixed widths */
+}
+
+/* Hide tab scroll buttons (to avoid overflow) */
+#scrollbutton-up,
+#scrollbutton-down {
+  display: none !important;
+}
